@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29020.237
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tonehunter", "tonehunter.vcxproj", "{5E985866-010C-4F65-BBCD-0F6F7C2778BE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E985866-010C-4F65-BBCD-0F6F7C2778BE}.Debug|x64.ActiveCfg = Debug|x64
+		{5E985866-010C-4F65-BBCD-0F6F7C2778BE}.Debug|x64.Build.0 = Debug|x64
+		{5E985866-010C-4F65-BBCD-0F6F7C2778BE}.Debug|x86.ActiveCfg = Debug|Win32
+		{5E985866-010C-4F65-BBCD-0F6F7C2778BE}.Debug|x86.Build.0 = Debug|Win32
+		{5E985866-010C-4F65-BBCD-0F6F7C2778BE}.Release|x64.ActiveCfg = Release|x64
+		{5E985866-010C-4F65-BBCD-0F6F7C2778BE}.Release|x64.Build.0 = Release|x64
+		{5E985866-010C-4F65-BBCD-0F6F7C2778BE}.Release|x86.ActiveCfg = Release|Win32
+		{5E985866-010C-4F65-BBCD-0F6F7C2778BE}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B8D7EBFF-4C56-4FAD-9AF8-9BE33742D972}
+	EndGlobalSection
+EndGlobal
