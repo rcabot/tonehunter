@@ -6,7 +6,9 @@ class Entity : public sf::Drawable, public sf::Transformable
 {
 public:
 	virtual void update();
-private:
 	std::vector<Component*> components;
+	std::vector<Drawable*> drawables;
+private:
+	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 

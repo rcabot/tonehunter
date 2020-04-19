@@ -40,33 +40,26 @@ int main()
 	};
 
 	// create the tilemap from the level definition
-	TileMap* map = new TileMap;
-	if (!map->load("content/colored_tilemap_packed.png", sf::Vector2u(8, 8), sf::Vector2u(4, 4), level, 16, 8))
-	{
+	auto map = new TileMap;
+	if (!map->load(
+		"content/colored_tilemap_packed.png", 
+		sf::Vector2u(8, 8),
+		sf::Vector2u(4, 4), 
+		level, 16, 8)) {
 		return -1;
 	}
 
-	// character physics
-	b2BodyDef bodyDef;
-	bodyDef.type = b2_dynamicBody;
-	bodyDef.position.Set(0.0f, 4.0f);
-	b2Body* body = world.CreateBody(&bodyDef);
-	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(1.0f, 1.0f);
-	b2FixtureDef fixtureDef;
-	fixtureDef.shape = &dynamicBox;
-	fixtureDef.density = 1.0f;
-	fixtureDef.friction = 0.3f;
-	body->CreateFixture(&fixtureDef);
-
-	Character* character = new Character(body);
-	if (!character->load("content/colored_tilemap_packed.png", sf::Vector2u(8, 8), sf::Vector2u(4, 4), 7))
-	{
+	auto characterSpriteRenderer = new SpriteSheetSpriteRenderer;
+	if (!characterSpriteRenderer->load(
+		"content/colored_tilemap_packed.png", 
+		sf::Vector2u(8, 8), 
+		sf::Vector2u(4, 4), 7)) {
 		return -1;
 	}
+	auto character = new Character;
+	character->drawables.emplace_back(characterSpriteRenderer);
 	//character.setOrigin(10.0f, 10.0f);
 	//character.setPosition(0, 150.0f);
-
 
 	entities.emplace_back(map);
 	entities.emplace_back(character);
