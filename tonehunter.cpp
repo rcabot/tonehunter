@@ -65,6 +65,7 @@ int main()
 	entities.emplace_back(character);
 
 	sf::Event event;
+	sf::Transform worldTransform;
 	while (window.isOpen())
 	{
 		while (window.pollEvent(event))
@@ -83,8 +84,7 @@ int main()
 
 		window.clear();
 		for (auto& e : entities){
-			auto d = e.get();
-			window.draw(*d);
+			e->draw(window, worldTransform);
 		}
 		window.display();
 	}

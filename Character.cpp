@@ -29,6 +29,5 @@ void Character::update()
 	ydelta /= mag;
 
 	auto currentPos = getPosition();
-
 	setPosition(currentPos.x+xdelta, currentPos.y + ydelta);
 }
