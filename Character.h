@@ -6,7 +6,5 @@
 
 class Character : public Entity
 {
-public:
-	void update();
 };
 

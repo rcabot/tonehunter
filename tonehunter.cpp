@@ -6,6 +6,8 @@
 #include "tonehunter.h"
 #include "Entity.h"
 #include "Level.h"
+#include "InputAxis.h"
+#include "TransformAxisMover.h"
 
 int main()
 {
@@ -27,7 +29,7 @@ int main()
 
 	//platform.setIcon(window.getSystemHandle());
 
-	// define the level with an array of tile indices
+	// create level
 	const int levelBitmap[] =
 	{
 		0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -39,8 +41,6 @@ int main()
 		2, 0, 1, 0, 3, 0, 2, 2, 2, 0, 1, 1, 1, 1, 1, 1,
 		0, 0, 1, 0, 3, 2, 2, 2, 0, 0, 0, 0, 1, 1, 1, 1,
 	};
-
-	// create the tilemap from the level definition
 	auto tileMapRenderer = new TileMap;
 	if (!tileMapRenderer->load(
 		"content/colored_tilemap_packed.png", 
@@ -52,6 +52,10 @@ int main()
 	auto level = new Level;
 	level->drawables.emplace_back(tileMapRenderer);
 
+	// create character
+	auto character = new Character;
+	auto inputAxis = new InputAxis;
+	auto mover = new TransformAxisMover(inputAxis,character);
 	auto characterSpriteRenderer = new SpriteSheetSpriteRenderer;
 	if (!characterSpriteRenderer->load(
 		"content/colored_tilemap_packed.png", 
@@ -59,10 +63,9 @@ int main()
 		sf::Vector2u(4, 4), 7)) {
 		return -1;
 	}
-	auto character = new Character;
 	character->drawables.emplace_back(characterSpriteRenderer);
-	//character.setOrigin(10.0f, 10.0f);
-	//character.setPosition(0, 150.0f);
+	character->components.emplace_back(inputAxis);
+	character->components.emplace_back(mover);
 
 	entities.emplace_back(level);
 	entities.emplace_back(character);
