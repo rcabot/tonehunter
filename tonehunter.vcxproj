@@ -188,6 +188,9 @@
   <ItemGroup>
     <ResourceCompile Include="tonehunter.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="content\colored_tilemap_packed.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -18,7 +18,13 @@ int main()
 	//float screenScalingFactor = platform.getScreenScalingFactor(window.getSystemHandle());
 	// Use the screenScalingFactor
 	float screenScalingFactor = 1.0f;
-	window.create(sf::VideoMode(400.0f * screenScalingFactor, 400.0f * screenScalingFactor),
+
+	auto windowTiles = sf::Vector2u(8, 8);
+	auto tileSize = sf::Vector2u(8, 8);
+	auto tileScale = sf::Vector2u(4, 4);
+	window.create(sf::VideoMode(
+		windowTiles.x * tileSize.x * tileScale.x * screenScalingFactor,
+		windowTiles.y * tileSize.y * tileScale.y * screenScalingFactor),
 		"Rachel's very special game!");
 	window.setFramerateLimit(FPS);
 	std::vector<std::unique_ptr<Entity>> entities;
@@ -32,21 +38,21 @@ int main()
 	// create level
 	const int levelBitmap[] =
 	{
-		0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-		0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0,
-		1, 1, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3,
-		0, 1, 0, 0, 2, 0, 3, 3, 3, 0, 1, 1, 1, 0, 0, 0,
-		0, 1, 1, 0, 3, 3, 3, 0, 0, 0, 1, 1, 1, 2, 0, 0,
-		0, 0, 1, 0, 3, 0, 2, 2, 0, 0, 1, 1, 1, 1, 2, 0,
-		2, 0, 1, 0, 3, 0, 2, 2, 2, 0, 1, 1, 1, 1, 1, 1,
-		0, 0, 1, 0, 3, 2, 2, 2, 0, 0, 0, 0, 1, 1, 1, 1,
+		 0, 1, 1, 1, 1, 1, 1, 3,
+	    10,11,11,11,11,11,11,13,
+		10,11,11,11,11,11,11,13,
+		10,11,11,11,11,11,11,13,
+		10,11,11,11,11,11,11,13,
+		10,11,11,11,11,11,11,13,
+		10,11,11,11,11,11,11,13,
+		20, 1, 1, 1, 1, 1, 1,23,
 	};
 	auto tileMapRenderer = new TileMap;
 	if (!tileMapRenderer->load(
 		"content/colored_tilemap_packed.png", 
-		sf::Vector2u(8, 8),
-		sf::Vector2u(4, 4), 
-		levelBitmap, 16, 8)) {
+		tileSize,
+		tileScale, 
+		levelBitmap, windowTiles.x, windowTiles.y)) {
 		return -1;
 	}
 	auto level = new Level;
