@@ -5,6 +5,7 @@
 #include "Character.h"
 #include "tonehunter.h"
 #include "Entity.h"
+#include "Level.h"
 
 int main()
 {
@@ -27,7 +28,7 @@ int main()
 	//platform.setIcon(window.getSystemHandle());
 
 	// define the level with an array of tile indices
-	const int level[] =
+	const int levelBitmap[] =
 	{
 		0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 		0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0,
@@ -40,14 +41,16 @@ int main()
 	};
 
 	// create the tilemap from the level definition
-	auto map = new TileMap;
-	if (!map->load(
+	auto tileMapRenderer = new TileMap;
+	if (!tileMapRenderer->load(
 		"content/colored_tilemap_packed.png", 
 		sf::Vector2u(8, 8),
 		sf::Vector2u(4, 4), 
-		level, 16, 8)) {
+		levelBitmap, 16, 8)) {
 		return -1;
 	}
+	auto level = new Level;
+	level->drawables.emplace_back(tileMapRenderer);
 
 	auto characterSpriteRenderer = new SpriteSheetSpriteRenderer;
 	if (!characterSpriteRenderer->load(
@@ -61,7 +64,7 @@ int main()
 	//character.setOrigin(10.0f, 10.0f);
 	//character.setPosition(0, 150.0f);
 
-	entities.emplace_back(map);
+	entities.emplace_back(level);
 	entities.emplace_back(character);
 
 	sf::Event event;

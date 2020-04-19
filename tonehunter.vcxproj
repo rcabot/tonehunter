@@ -166,6 +166,7 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Level.cpp" />
     <ClCompile Include="SpriteSheetSpriteRenderer.cpp" />
     <ClCompile Include="TileMap.cpp" />
     <ClCompile Include="tonehunter.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Level.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SpriteSheetSpriteRenderer.h" />
     <ClInclude Include="TileMap.h" />
