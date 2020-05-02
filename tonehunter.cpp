@@ -8,6 +8,8 @@
 #include "Level.h"
 #include "InputAxis.h"
 #include "TransformAxisMover.h"
+#include "DynamicBoxCollider.h"
+#include "StaticTileMapCollider.h"
 
 int main()
 {
@@ -56,22 +58,34 @@ int main()
 		return -1;
 	}
 	auto level = new Level;
+	auto staticTileMapCollider = new StaticTileMapCollider(
+		levelBitmap, 
+		windowTiles.x, 
+		windowTiles.y, 
+		tileSize.x * tileScale.x, 
+		tileSize.y * tileScale.y);
 	level->drawables.emplace_back(tileMapRenderer);
+	level->components.emplace_back(staticTileMapCollider);
 
 	// create character
 	auto character = new Character;
 	auto inputAxis = new InputAxis;
 	auto mover = new TransformAxisMover(inputAxis,character);
+	auto dynamicBoxCollider = new DynamicBoxCollider(
+		tileSize.x * tileScale.x,
+		tileSize.y * tileScale.y,
+		character);
 	auto characterSpriteRenderer = new SpriteSheetSpriteRenderer;
 	if (!characterSpriteRenderer->load(
 		"content/colored_tilemap_packed.png", 
-		sf::Vector2u(8, 8), 
-		sf::Vector2u(4, 4), 7)) {
+		tileSize,
+		tileScale, 7)) {
 		return -1;
 	}
 	character->drawables.emplace_back(characterSpriteRenderer);
 	character->components.emplace_back(inputAxis);
 	character->components.emplace_back(mover);
+	character->components.emplace_back(dynamicBoxCollider);
 
 	entities.emplace_back(level);
 	entities.emplace_back(character);
