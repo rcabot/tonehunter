@@ -33,7 +33,7 @@ bool DynamicBoxCollider::detectCollision(Collider* other)
 
 void DynamicBoxCollider::respondToCollision(Collider* other)
 {
-	std::cout << "responding!";
+	//std::cout << "!";
 }
 
 BoxExtents DynamicBoxCollider::getExtents()

@@ -113,6 +113,7 @@ int main()
 			e->draw(window, worldTransform);
 		}
 		window.display();
+
 	}
 
 	return 0;

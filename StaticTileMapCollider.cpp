@@ -1,4 +1,5 @@
 #include "StaticTileMapCollider.h"
+#include <iostream>
 
 StaticTileMapCollider::StaticTileMapCollider(const int* tbm, int bmw, int bmh, float tw, float th) : Collider()
 {
@@ -16,14 +17,16 @@ StaticTileMapCollider::~StaticTileMapCollider()
 
 bool StaticTileMapCollider::detectCollisionAgainstBox(const BoxExtents& otherExtents)
 {
+	bool collision = false;
 	for (unsigned int i = 0; i < bitmapWidth; i++)
 	{
 		for (unsigned int j = 0; j < bitmapHeight; j++)
 		{
-			int tile = tileBitmap[i + j];
+			int tile = tileBitmap[i + j* bitmapHeight];
 			if (isWall(tile)) {
 				auto tileExtents = getTileExtents(i,j);
 				if (Collider::compareBoxExtents(otherExtents, tileExtents)) {
+					std::cout << "c:" << tileExtents.left << "," << tileExtents.top << "\n";
 					return true;
 				}
 			}
