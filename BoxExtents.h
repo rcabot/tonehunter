@@ -6,5 +6,7 @@ public:
 	float right;
 	float top;
 	float bottom;
+	float width;
+	float height;
 };
 

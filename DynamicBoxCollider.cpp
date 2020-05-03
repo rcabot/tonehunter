@@ -81,6 +81,8 @@ BoxExtents DynamicBoxCollider::getExtents(float offsetX, float offsetY)
 	extents.right = pos.x + width;
 	extents.top = pos.y;
 	extents.bottom = pos.y + height;
+	extents.width = width;
+	extents.height = height;
 	return extents;
 }
 
