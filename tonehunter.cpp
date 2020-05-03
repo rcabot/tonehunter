@@ -71,7 +71,7 @@ int main()
 	auto character = new Character;
 	character->setPosition(100.0f, 100.0f);
 	auto inputAxis = new InputAxis;
-	auto mover = new TransformAxisMover(inputAxis,character);
+	auto mover = new TransformAxisMover(inputAxis,character,10.0f);
 	auto dynamicBoxCollider = new DynamicBoxCollider(
 		tileSize.x * tileScale.x,
 		tileSize.y * tileScale.y,

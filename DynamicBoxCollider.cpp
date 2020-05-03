@@ -67,10 +67,10 @@ BoxExtents DynamicBoxCollider::getExtents(float offsetX, float offsetY)
 {
 	BoxExtents extents;
 	auto pos = transformable->getPosition() + sf::Vector2f{offsetX,offsetY};
-	extents.left = pos.x - width / 2.0f;
-	extents.right = pos.x + width / 2.0f;
-	extents.top = pos.y - height / 2.0f;
-	extents.bottom = pos.y + height / 2.0f;
+	extents.left = pos.x;
+	extents.right = pos.x + width;
+	extents.top = pos.y;
+	extents.bottom = pos.y + height;
 	return extents;
 }
 

@@ -5,9 +5,10 @@
 class TransformAxisMover : public Component
 {
 public:
-	TransformAxisMover(InputAxis*, sf::Transformable*);
+	TransformAxisMover(InputAxis* a, sf::Transformable* t, float s);
 	void update();
 	sf::Transformable* transformable;
 	InputAxis* axis;
+	float speed;
 };
 
