@@ -8,7 +8,6 @@ TransformAxisMover::TransformAxisMover(InputAxis* a, sf::Transformable* t)
 
 void TransformAxisMover::update()
 {
-
 	auto currentPos = transformable->getPosition();
 	transformable->setPosition(currentPos.x + axis->xdelta, currentPos.y + axis->ydelta);
 }

@@ -13,10 +13,12 @@ public:
 	void update();
 	sf::Transformable* transformable;
 private:
+	bool detectCollision(Collider* other, float offsetX, float offsetY);
 	bool detectCollision(Collider* other);
-	void respondToCollision(Collider* other);
 	BoxExtents getExtents();
+	BoxExtents getExtents(float offsetX, float offsetY);
 
+	sf::Vector2f previousTransformablePosition;
 	float width;
 	float height;
 };

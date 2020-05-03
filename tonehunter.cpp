@@ -69,6 +69,7 @@ int main()
 
 	// create character
 	auto character = new Character;
+	character->setPosition(100.0f, 100.0f);
 	auto inputAxis = new InputAxis;
 	auto mover = new TransformAxisMover(inputAxis,character);
 	auto dynamicBoxCollider = new DynamicBoxCollider(
