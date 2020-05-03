@@ -1,6 +1,7 @@
 #include "DynamicBoxCollider.h"
 #include <iostream>
 #include "ColliderWorld.h"
+constexpr int COLLISION_STEPS = 10;
 
 DynamicBoxCollider::DynamicBoxCollider(float h, float w, sf::Transformable* t) : Collider()
 {
@@ -19,12 +20,21 @@ DynamicBoxCollider::~DynamicBoxCollider()
 // are only ever along the axis (because all is tile based.)
 void DynamicBoxCollider::update()
 {
-	auto world = getWorld();
-
 	// reset position to just the movement with x
 	auto newPosition = transformable->getPosition();
 	auto delta = newPosition - previousTransformablePosition;
-	transformable->setPosition(previousTransformablePosition + sf::Vector2f{delta.x,0.0f});
+	float collisionSteps = COLLISION_STEPS;
+	for (unsigned int i = 0; i < COLLISION_STEPS; i++)
+	{
+		performCollisionResponsePass(delta / collisionSteps);
+	}
+}
+
+void DynamicBoxCollider::performCollisionResponsePass(const sf::Vector2f& delta) {
+
+	// this works because the normals of this world are only in the x and y axis.
+	auto world = getWorld();
+	transformable->setPosition(previousTransformablePosition + sf::Vector2f{ delta.x,0.0f });
 
 	// check and correct x delta
 	for (auto c : world->colliders)

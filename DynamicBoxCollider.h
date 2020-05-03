@@ -11,6 +11,7 @@ public:
 	DynamicBoxCollider(float h, float w, sf::Transformable* t);
 	~DynamicBoxCollider();
 	void update();
+	void performCollisionResponsePass(const sf::Vector2f& delta);
 	sf::Transformable* transformable;
 private:
 	bool detectCollision(Collider* other, float offsetX, float offsetY);

@@ -26,7 +26,6 @@ bool StaticTileMapCollider::detectCollisionAgainstBox(const BoxExtents& otherExt
 			if (isWall(tile)) {
 				auto tileExtents = getTileExtents(i,j);
 				if (Collider::compareBoxExtents(otherExtents, tileExtents)) {
-					std::cout << "c:" << tileExtents.left << "," << tileExtents.top << "\n";
 					return true;
 				}
 			}
