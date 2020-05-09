@@ -2,7 +2,7 @@
 constexpr float LIVE_AXIS_MAX = 1.0f;
 constexpr float LIVE_AXIS_MIN = 0.2f;
 
-void InputAxis::update()
+void InputAxis::update(const sf::Transform& parentTransform)
 {
 	xdelta = 0.0f;
 	ydelta = 0.0f;

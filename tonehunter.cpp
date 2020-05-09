@@ -10,6 +10,8 @@
 #include "TransformAxisMover.h"
 #include "DynamicBoxCollider.h"
 #include "StaticTileMapCollider.h"
+#include "BoxTriggerZone.h"
+#include "LaserShooter.h"
 
 int main()
 {
@@ -86,10 +88,10 @@ int main()
 	level->components.emplace_back(staticTileMapCollider);
 
 	// create character
-	auto character = new Character;
+	auto character = new Entity;
 	character->setPosition(100.0f, 100.0f);
-	auto inputAxis = new InputAxis;
-	auto mover = new TransformAxisMover(inputAxis,character,5.0f);
+	auto leftInputAxis = new InputAxis;
+	auto mover = new TransformAxisMover(leftInputAxis,character,5.0f);
 	auto dynamicBoxCollider = new DynamicBoxCollider(
 		tileSize.x * tileScale.x,
 		tileSize.y * tileScale.y,
@@ -101,10 +103,28 @@ int main()
 		tileScale, 7)) {
 		return -1;
 	}
+
+	auto laser = new Entity;
+	auto rightInputAxis = new InputAxis;
+	auto laserHitbox = new BoxTriggerZone;
+	auto laserRenderer = new SpriteSheetSpriteRenderer;
+	if (!laserRenderer->load(
+		"content/colored_tilemap_packed.png",
+		tileSize,
+		tileScale, 8)) {
+		return -1;
+	}
+	auto laserShooter = new LaserShooter( rightInputAxis, laserHitbox, laserRenderer );
+
+	laser->drawables.emplace_back(laserRenderer);
+	laser->components.emplace_back(rightInputAxis);
+	laser->components.emplace_back(laserHitbox);
+
 	character->drawables.emplace_back(characterSpriteRenderer);
-	character->components.emplace_back(inputAxis);
+	character->components.emplace_back(leftInputAxis);
 	character->components.emplace_back(mover);
 	character->components.emplace_back(dynamicBoxCollider);
+	character->children.emplace_back(laser);
 
 	entities.emplace_back(level);
 	entities.emplace_back(character);
@@ -124,7 +144,7 @@ int main()
 		}
 
 		for (auto& e : entities) {
-			e->update();
+			e->update(worldTransform);
 		}
 
 		window.clear();

@@ -18,7 +18,7 @@ DynamicBoxCollider::~DynamicBoxCollider()
 
 // checks and corrects axis separately. this works because surface normals 
 // are only ever along the axis (because all is tile based.)
-void DynamicBoxCollider::update()
+void DynamicBoxCollider::update(const sf::Transform& parentTransform)
 {
 	// reset position to just the movement with x
 	auto newPosition = transformable->getPosition();

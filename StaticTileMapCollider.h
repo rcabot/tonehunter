@@ -7,7 +7,7 @@ class StaticTileMapCollider : public Collider
 public:
 	StaticTileMapCollider(const int* tileBitmap, int bitmapWidth,int bitmapHeight,float tileWidth,float tileHeight);
 	~StaticTileMapCollider();
-	void update() {};
+	void update(const sf::Transform& parentTransform) {};
 	bool detectCollisionAgainstBox(const BoxExtents& otherExtents);
 private:
 	bool isWall(int tile);

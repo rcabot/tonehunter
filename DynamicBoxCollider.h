@@ -10,7 +10,7 @@ class DynamicBoxCollider : public Collider
 public:
 	DynamicBoxCollider(float h, float w, sf::Transformable* t);
 	~DynamicBoxCollider();
-	void update();
+	void update(const sf::Transform& parentTransform);
 	void performCollisionResponsePass(const sf::Vector2f& delta);
 	sf::Transformable* transformable;
 private:

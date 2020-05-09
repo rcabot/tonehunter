@@ -4,7 +4,7 @@
 class InputAxis : public Component
 {
 public:
-	void update();
+	void update(const sf::Transform& parentTransform);
 	float xdelta;
 	float ydelta;
 private:
