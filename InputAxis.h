@@ -7,6 +7,8 @@ public:
 	void update(const sf::Transform& parentTransform);
 	float xdelta;
 	float ydelta;
+	float getCurrentDeltaMagnitude();
+	sf::Vector2f getCurrentAsVector2f();
 private:
 	sf::Vector2f getDeadZoneScaledAxis(const sf::Vector2f& joystickaxis);
 	float invLerp(float from, float to, float value);

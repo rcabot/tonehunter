@@ -34,6 +34,7 @@ bool SpriteSheetSpriteRenderer::load(const std::string& tilesetPath, sf::Vector2
 
 void SpriteSheetSpriteRenderer::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
+	if (!active) return;
 	// apply the transform
 	states.transform *= getTransform();
 

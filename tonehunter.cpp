@@ -103,6 +103,7 @@ int main()
 		tileScale, 7)) {
 		return -1;
 	}
+	characterSpriteRenderer->active = true;
 
 	auto laser = new Entity;
 	auto rightInputAxis = new InputAxis;
@@ -111,14 +112,16 @@ int main()
 	if (!laserRenderer->load(
 		"content/colored_tilemap_packed.png",
 		tileSize,
-		tileScale, 8)) {
+		tileScale, 81)) {
 		return -1;
 	}
-	auto laserShooter = new LaserShooter( rightInputAxis, laserHitbox, laserRenderer );
+	laserRenderer->active = true;
+	auto laserShooter = new LaserShooter( rightInputAxis, laserHitbox, laserRenderer, laser);
 
 	laser->drawables.emplace_back(laserRenderer);
 	laser->components.emplace_back(rightInputAxis);
 	laser->components.emplace_back(laserHitbox);
+	laser->components.emplace_back(laserShooter);
 
 	character->drawables.emplace_back(characterSpriteRenderer);
 	character->components.emplace_back(leftInputAxis);

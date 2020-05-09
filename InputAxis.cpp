@@ -49,6 +49,16 @@ void InputAxis::update(const sf::Transform& parentTransform)
 	}
 }
 
+float InputAxis::getCurrentDeltaMagnitude()
+{
+	return getVectorMagnitude(sf::Vector2f(xdelta,ydelta));
+}
+
+sf::Vector2f InputAxis::getCurrentAsVector2f()
+{
+	return sf::Vector2f(xdelta,ydelta);
+}
+
 sf::Vector2f InputAxis::getDeadZoneScaledAxis(const sf::Vector2f& joystickaxis)
 {
 	float rawMagnitude = getVectorMagnitude(joystickaxis);

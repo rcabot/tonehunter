@@ -8,11 +8,12 @@
 class LaserShooter : public Component
 {
 public:
-	LaserShooter(InputAxis* axis, BoxTriggerZone* hitbox, SpriteSheetSpriteRenderer* renderer);
+	LaserShooter(InputAxis* axis, BoxTriggerZone* hitbox, SpriteSheetSpriteRenderer* renderer, sf::Transformable* transformable);
 	void update(const sf::Transform& parentTransform);
 private:
 	InputAxis* axis;
 	BoxTriggerZone* hitbox;
 	SpriteSheetSpriteRenderer* renderer;
+	sf::Transformable* transformable;
 };
 
