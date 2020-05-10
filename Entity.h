@@ -10,6 +10,7 @@ public:
 	std::vector<sf::Drawable*> drawables;
 	std::vector<Entity*> children;
 	virtual void draw(sf::RenderTarget& target, const sf::Transform& parentTransform) const;
+	bool active = true;
 private:
 };
 

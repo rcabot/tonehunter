@@ -90,7 +90,8 @@ int main()
 	// create character
 	auto character = new Entity;
 	character->setPosition(100.0f, 100.0f);
-	auto leftInputAxis = new InputAxis;
+	auto leftInputAxis = new InputAxis(0,sf::Joystick::Axis::X, sf::Joystick::Axis::Y);
+	auto rightInputAxis = new InputAxis(0, sf::Joystick::Axis::U, sf::Joystick::Axis::V);
 	auto mover = new TransformAxisMover(leftInputAxis,character,5.0f);
 	auto dynamicBoxCollider = new DynamicBoxCollider(
 		tileSize.x * tileScale.x,
@@ -103,10 +104,8 @@ int main()
 		tileScale, 7)) {
 		return -1;
 	}
-	characterSpriteRenderer->active = true;
 
 	auto laser = new Entity;
-	auto rightInputAxis = new InputAxis;
 	auto laserHitbox = new BoxTriggerZone;
 	auto laserRenderer = new SpriteSheetSpriteRenderer;
 	if (!laserRenderer->load(
@@ -115,18 +114,17 @@ int main()
 		tileScale, 81)) {
 		return -1;
 	}
-	laserRenderer->active = true;
 	auto laserShooter = new LaserShooter( rightInputAxis, laserHitbox, laserRenderer, laser);
 
 	laser->drawables.emplace_back(laserRenderer);
 	laser->components.emplace_back(rightInputAxis);
 	laser->components.emplace_back(laserHitbox);
-	laser->components.emplace_back(laserShooter);
 
 	character->drawables.emplace_back(characterSpriteRenderer);
 	character->components.emplace_back(leftInputAxis);
 	character->components.emplace_back(mover);
 	character->components.emplace_back(dynamicBoxCollider);
+	character->components.emplace_back(laserShooter);
 	character->children.emplace_back(laser);
 
 	entities.emplace_back(level);

@@ -2,6 +2,8 @@
 
 void Entity::update(const sf::Transform& parentTransform)
 {
+	if (!active) return;
+
 	auto combinedTransform = parentTransform * getTransform();
 	
 	// update all it's components
@@ -17,6 +19,8 @@ void Entity::update(const sf::Transform& parentTransform)
 
 void Entity::draw(sf::RenderTarget& target, const sf::Transform& parentTransform) const
 {
+	if (!active) return;
+
 	// combine the parent transform with the node's one
 	auto combinedTransform = parentTransform * getTransform();
 
